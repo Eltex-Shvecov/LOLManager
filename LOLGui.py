@@ -51,10 +51,13 @@ class LOLGui:
             print('Server start')
             self.LOL_Manager.start_application(self)
         else:
-            print('Error')
+            print('Match not started')
 
     def set_avatars(self, idx, img):
         self.data_gui['avatars'][idx].config(image=img)
+
+    def set_creep_score(self, idx, score):
+        self.data_gui['creeps'][idx].config(text=score)
 
     def update_window(self):
         self.main_window.update()
