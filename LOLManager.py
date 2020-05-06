@@ -36,7 +36,10 @@ class LOLManager:
         try:
             self.Data = req.get(self.url, verify='riotgames.pem')
             self.Data = self.Data.json()
-            return True
+            if self.Data.get('allPlayers') is None:
+                return False
+            else:
+                return True
         except req.exceptions.RequestException:
             return False
 
