@@ -6,7 +6,7 @@ class LOLGui:
 
     def __init__(self, lol_manager):
         self.LOL_Manager = lol_manager
-        self.data_gui = {'avatars': [], 'creeps': []}
+        self.data_gui = {'avatars': [], 'creeps': [], 'items': [[] for _ in range(10)]}
         self.main_window = tk.Tk()
         self.button_connect = tk.Button(self.main_window)
 
@@ -16,10 +16,14 @@ class LOLGui:
             self.data_gui['avatars'].append(avatars)
             self.data_gui['creeps'].append(creeps)
 
+            for r in range(6):
+                item = tk.Label(self.main_window)
+                self.data_gui['items'][i].append(item)
+
     def configuration(self):
 
         # основное окно
-        self.main_window.geometry('540x400')
+        self.main_window.geometry('600x400')
         self.main_window.title('LOL Tracking')
         self.main_window.resizable(False, False)
         self.main_window.config(bg='#041320')
@@ -36,11 +40,25 @@ class LOLGui:
             self.data_gui['creeps'][i + 5].config(bg='#041320', font='Arial 11 bold', fg='yellow', text='--')
             self.data_gui['avatars'][i].config(bg='white')
             self.data_gui['avatars'][i + 5].config(bg='white')
-            self.data_gui['avatars'][i].place(anchor='center', x=240, y=coordinate, width=50, height=50)
-            self.data_gui['avatars'][i + 5].place(anchor='center', x=300, y=coordinate, width=50, height=50)
-            self.data_gui['creeps'][i].place(anchor='center', x=190, y=coordinate)
-            self.data_gui['creeps'][i + 5].place(anchor='center', x=350, y=coordinate)
+            self.data_gui['avatars'][i].place(anchor='center', x=270, y=coordinate, width=50, height=50)
+            self.data_gui['avatars'][i + 5].place(anchor='center', x=330, y=coordinate, width=50, height=50)
+            self.data_gui['creeps'][i].place(anchor='center', x=210, y=coordinate)
+            self.data_gui['creeps'][i + 5].place(anchor='center', x=380, y=coordinate)
             coordinate += 60
+
+        # предметы
+        coordinate_y = 50
+        for i in range(5):
+            coordinate_x = 180
+            x_right = 410
+            for r in range(6):
+                self.data_gui['items'][i][r].config(bg='#041320')
+                self.data_gui['items'][i + 5][r].config(bg='#041320')
+                self.data_gui['items'][i][r].place(anchor='center', x=coordinate_x, y=coordinate_y, width=25, height=25)
+                self.data_gui['items'][i + 5][r].place(anchor='center', x=x_right, y=coordinate_y, width=25, height=25)
+                coordinate_x -= 30
+                x_right += 30
+            coordinate_y += 60
 
     def show(self):
         self.configuration()
@@ -58,6 +76,10 @@ class LOLGui:
 
     def set_creep_score(self, idx, score):
         self.data_gui['creeps'][idx].config(text=score)
+
+    def set_items(self, idx, items):
+        for i, item in enumerate(items):
+            self.data_gui['items'][idx][i].config(image=item)
 
     def update_window(self):
         self.main_window.update()
