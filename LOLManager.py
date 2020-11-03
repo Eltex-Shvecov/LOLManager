@@ -15,7 +15,7 @@ class LOLManager:
         self.url = 'https://127.0.0.1:2999/liveclientdata/allgamedata'
 
         # получение корректных имен персонажей
-        with open("champion.json", "r", encoding='utf-8') as read_file:
+        with open("resource/champion.json", "r", encoding='utf-8') as read_file:
             json_file = js.loads(read_file.read())
 
         data = json_file['data']
@@ -27,7 +27,7 @@ class LOLManager:
 
         try:
             tm.sleep(1)
-            self.Data = req.get(self.url, verify='riotgames.pem')
+            self.Data = req.get(self.url, verify='resource/riotgames.pem')
             self.Data = self.Data.json()
             return True
         except req.exceptions.RequestException:
@@ -37,7 +37,7 @@ class LOLManager:
         """Проверка запущен ли матч"""
 
         try:
-            self.Data = req.get(self.url, verify='riotgames.pem')
+            self.Data = req.get(self.url, verify='resource/riotgames.pem')
             self.Data = self.Data.json()
             if self.Data.get('allPlayers') is None:
                 return False
