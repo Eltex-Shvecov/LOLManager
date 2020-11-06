@@ -24,7 +24,7 @@ class LOLGui:
 
         # основное окно
         self.main_window.geometry('600x400')
-        self.main_window.title('LOL Tracking')
+        self.main_window.title('LOL Manager')
         self.main_window.resizable(False, False)
         self.main_window.config(bg='#041320')
 
