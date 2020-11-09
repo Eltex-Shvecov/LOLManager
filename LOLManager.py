@@ -74,8 +74,6 @@ class LOLManager:
 
                 items = champion['items']
                 for item in items:
-                    if item['itemID'] == 3340:
-                        continue
                     path = 'resource/items/' + str(item['itemID']) + '.png'
                     img_item = tk.PhotoImage(file=path)
                     self.items[idx].append(img_item)

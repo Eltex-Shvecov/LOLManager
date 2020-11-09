@@ -16,14 +16,14 @@ class LOLGui:
             self.data_gui['avatars'].append(avatars)
             self.data_gui['creeps'].append(creeps)
 
-            for r in range(6):
+            for r in range(7):
                 item = tk.Label(self.main_window)
                 self.data_gui['items'][i].append(item)
 
     def configuration(self):
 
         # основное окно
-        self.main_window.geometry('600x400')
+        self.main_window.geometry('650x450')
         self.main_window.title('LOL Manager')
         self.main_window.resizable(False, False)
         self.main_window.config(bg='#041320')
@@ -40,18 +40,18 @@ class LOLGui:
             self.data_gui['creeps'][i + 5].config(bg='#041320', font='Arial 11 bold', fg='yellow', text='--')
             self.data_gui['avatars'][i].config(bg='white')
             self.data_gui['avatars'][i + 5].config(bg='white')
-            self.data_gui['avatars'][i].place(anchor='center', x=270, y=coordinate, width=50, height=50)
-            self.data_gui['avatars'][i + 5].place(anchor='center', x=330, y=coordinate, width=50, height=50)
-            self.data_gui['creeps'][i].place(anchor='center', x=210, y=coordinate)
-            self.data_gui['creeps'][i + 5].place(anchor='center', x=380, y=coordinate)
+            self.data_gui['avatars'][i].place(anchor='center', x=295, y=coordinate, width=50, height=50)
+            self.data_gui['avatars'][i + 5].place(anchor='center', x=355, y=coordinate, width=50, height=50)
+            self.data_gui['creeps'][i].place(anchor='center', x=245, y=coordinate)
+            self.data_gui['creeps'][i + 5].place(anchor='center', x=405, y=coordinate)
             coordinate += 60
 
         # предметы
         coordinate_y = 50
         for i in range(5):
-            coordinate_x = 180
-            x_right = 410
-            for r in range(6):
+            coordinate_x = 205
+            x_right = 445
+            for r in range(7):
                 self.data_gui['items'][i][r].config(bg='#041320')
                 self.data_gui['items'][i + 5][r].config(bg='#041320')
                 self.data_gui['items'][i][r].place(anchor='center', x=coordinate_x, y=coordinate_y, width=25, height=25)
