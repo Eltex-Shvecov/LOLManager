@@ -9,6 +9,8 @@ class LOLGui:
         self.data_gui = {'avatars': [], 'creeps': [], 'items': [[] for _ in range(10)]}
         self.main_window = tk.Tk()
         self.button_connect = tk.Button(self.main_window)
+        self.log_indicate = tk.Label(self.main_window)
+        self.log_text = tk.Label(self.main_window)
 
         for i in range(10):
             avatars = tk.Label(self.main_window)
@@ -27,6 +29,12 @@ class LOLGui:
         self.main_window.title('LOL Manager')
         self.main_window.resizable(False, False)
         self.main_window.config(bg='#041320')
+
+        #индикатор логирования
+        self.log_indicate.config(bg='yellow')
+        self.log_text.config(bg='#041320', text='', fg='white', font='Arial 8')
+        self.log_indicate.place(anchor='sw', x=13, y=437, width=15, height=15)
+        self.log_text.place(anchor='sw', x=33, y=437, height=15)
 
         # кнопка connect
         self.button_connect.config(font='Arial', command=self.click_connect)
@@ -66,10 +74,10 @@ class LOLGui:
 
     def click_connect(self):
         if self.LOL_Manager.check_start_api_server():
-            print('Server start')
+            self.set_text_to_log('Server start', 'green')
             self.LOL_Manager.start_application(self)
         else:
-            print('Match not started')
+            self.set_text_to_log('Match not started', 'red')
 
     def set_avatars(self, idx, img):
         self.data_gui['avatars'][idx].config(image=img)
@@ -80,6 +88,13 @@ class LOLGui:
     def set_items(self, idx, items):
         for i, item in enumerate(items):
             self.data_gui['items'][idx][i].config(image=item)
+
+    def set_text_to_log(self, text='', color=''):
+        if color != '':
+            self.log_indicate.config(bg=color)
+
+        self.log_text.config(text=text)
+        self.update_window()
 
     def update_window(self):
         self.main_window.update()
