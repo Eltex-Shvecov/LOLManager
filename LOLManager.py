@@ -83,4 +83,4 @@ class LOLManager:
 
             Gui.update_window()
 
-        print('Match is over')
+        Gui.set_text_to_log('Match is over', 'green')
