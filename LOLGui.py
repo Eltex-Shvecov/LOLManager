@@ -30,7 +30,7 @@ class LOLGui:
         self.main_window.resizable(False, False)
         self.main_window.config(bg='#041320')
 
-        #индикатор логирования
+        # индикатор логирования
         self.log_indicate.config(bg='yellow')
         self.log_text.config(bg='#041320', text='', fg='white', font='Arial 8')
         self.log_indicate.place(anchor='sw', x=13, y=437, width=15, height=15)
